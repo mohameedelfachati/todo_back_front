@@ -1,0 +1,14 @@
+.App{
+  display: flex;
+  flex-direction: column;
+
+}
+.App_content{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.inner_app_content{
+  display: flex;
+  flex-direction: column;
+}

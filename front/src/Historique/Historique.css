@@ -1,0 +1,12 @@
+.hedrwrapper{
+    display: flex;
+    flex-direction: row;
+    padding: 25px;
+    
+}
+.text{
+    width: 50%;
+    text-align: center;
+    border-bottom: 3px solid red;
+    color: red;
+}

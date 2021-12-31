@@ -1,0 +1,74 @@
+.AddTodoCm{
+    display: flex;
+    flex-direction: column;
+    position:absolute;
+    left: 26.56%;
+    right: 9.53%;
+    top: 13.19%;
+    padding: 17px 25px 17px 28px;
+    bottom: 59.86%;
+    background: #FFFFFF;
+    width: 818px;
+    height: 194px;
+    box-shadow: -1px 1px 3px 3px rgba(0, 0, 0, 0.09) ;
+    border-radius: 2%;
+}
+
+.Titre{
+    width: 100%;
+    height: 33px;
+    background: rgba(0, 0, 0, 0.07);
+    opacity: 0.6;
+    border-radius: 7px;
+    border: transparent;
+
+}
+.Description{
+    width: 100%;
+    height: 68px;
+    background: rgba(0, 0, 0, 0.07);
+    opacity: 0.6;
+    margin-top: 10px;
+    border-radius: 7px;
+    border: transparent;
+    
+   
+
+}
+
+.buttons_container{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    margin-top: 23px;
+    
+   
+
+}
+.addButton{
+    color: white;
+    background-color: #EB514E;
+    height: 32px;
+    width: 122.26px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    border-radius: 7px;
+    border: transparent;
+    align-items: center;
+}
+.text_ajouter{
+    margin: 7px 22px 8px 0px;
+    
+}
+.options{
+    display: flex;
+    flex-direction: row;
+    width: 112,83px;
+    height: 31,16px;
+    border-radius: 7px;
+    Offset: 0px, 1px,
+    rgba(0, 0, 0, 0.2)
+}
+
+
