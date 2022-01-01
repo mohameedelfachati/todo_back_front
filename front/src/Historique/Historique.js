@@ -15,11 +15,13 @@ const Historique = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/test")
+      .get("http://localhost:3000/post")
       .then((res) => {
         isDone
-          ? setPosteList(res.data.filter((post) => post.status == "done"))
-          : setPosteList(res.data.filter((post) => post.status == "deleted"));
+          ? setPosteList(res.data.data.filter((post) => post.status == "done"))
+          : setPosteList(
+              res.data.data.filter((post) => post.status == "deleted")
+            );
       })
       .catch((err) => console.log("invalid adress", err));
   }, [isDone]);

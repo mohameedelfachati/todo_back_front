@@ -1,4 +1,5 @@
 var express = require("express");
+var cors = require("cors");
 
 var bodyParser = require("body-parser");
 
@@ -14,6 +15,7 @@ const db = getFirestore();
 var app = express();
 
 app.use(bodyParser.json());
+app.use(cors({ origin: "http://localhost:3001" }));
 
 app.listen(3000, () => {});
 
@@ -36,16 +38,20 @@ app.get("/post", async (req, res, next) => {
 });
 
 app.post("/post", async (req, res, next) => {
-  console.log(req.body.name);
-  const postResponse = await db.collection("posts").add({
-    title: "AADev I want to setup firestore with node js ",
-    priority: "important",
-    date: "12-12-2021 00:00:00",
-    details: "set up firestore with node js ",
-    status: "inProgress",
-  });
-
-  res.status(201).json({
-    message: postResponse,
-  });
+  console.log(req.body);
+  try {
+    const poste = {
+      title: req.body["title"],
+      priority: req.body["priority"],
+      details: req.body["details"],
+      status: req.body["status"],
+      date: req.body["date"],
+    };
+    const newDoc = await db.collection("posts").add(poste);
+    res.status(201).json({
+      message: "postResponse",
+    });
+  } catch (error) {
+    res.status(400).send(`poste is not added correctly`);
+  }
 });

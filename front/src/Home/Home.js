@@ -9,9 +9,12 @@ const Home = () => {
   const [posteInPr, setPosteInPr] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8080/test")
+      .get("http://localhost:3000/post")
       .then((res) => {
-        setPosteInPr(res.data.filter((post) => post.status == "inProgress"));
+        console.log(res.data.data);
+        setPosteInPr(
+          res.data.data.filter((post) => post.status == "inProgress")
+        );
       })
       .catch((err) => console.log(err));
   }, []);
