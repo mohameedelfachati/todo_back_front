@@ -1,8 +1,24 @@
 import React from "react";
 import "./Poste.css";
 import { Priority } from "../../Historique/Historique.style";
+import axios from "axios";
 
 const Poste = ({ posts }) => {
+  const changeStatusTodone = (post) => {
+    console.log(post);
+    axios
+      .put("http://localhost:3000/post/done", post)
+      .then((res) => console.log("the priority has been abdated", res))
+      .catch((error) => console.error("there is an error", error));
+  };
+
+  const changeStatusToDeleted = (post) => {
+    console.log(post);
+    axios
+      .put("http://localhost:3000/post/deleted", post)
+      .then((res) => console.log("the update is succeded", res))
+      .catch((error) => console.log("the update failed", error));
+  };
   return (
     <div>
       {posts &&
@@ -21,19 +37,19 @@ const Poste = ({ posts }) => {
               <div className="button_Add">
                 <button
                   className="button_terminé"
-                  //onClick={changeStatusTodone(post)}
+                  onClick={changeStatusTodone(post)}
                 >
                   Terminé
                 </button>
                 <button
                   className="button_annuler"
-                  //onClick={changeStatusToDeleted(post)}
+                  onClick={changeStatusToDeleted(post)}
                 >
                   Annuler
                 </button>
               </div>
             ) : (
-              <div className="date">{post.date} </div>
+              <div className="date">{post.date._seconds} </div>
             )}
           </div>
         ))}

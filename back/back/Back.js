@@ -21,8 +21,10 @@ app.listen(3000, () => {});
 
 app.get("/post", async (req, res, next) => {
   console.log("/test requested");
+
   const citiesRef = db.collection("posts");
   const snapshot = await citiesRef.get();
+
   if (snapshot.empty) {
     console.log("No matching documents.");
     return;
@@ -30,8 +32,17 @@ app.get("/post", async (req, res, next) => {
 
   const postsList = [];
   snapshot.forEach((doc) => {
-    postsList.push(doc.data());
+    console.log();
+    postsList.push({
+      id: doc.id,
+      title: doc.data().title,
+      priority: doc.data().priority,
+      details: doc.data().details,
+      status: doc.data().status,
+      date: doc.data().date,
+    });
   });
+
   res.status(200).json({
     data: postsList,
   });
@@ -45,13 +56,41 @@ app.post("/post", async (req, res, next) => {
       priority: req.body["priority"],
       details: req.body["details"],
       status: req.body["status"],
-      date: req.body["date"],
+      date: Timestamp.fromDate(new Date()),
     };
     const newDoc = await db.collection("posts").add(poste);
     res.status(201).json({
-      message: "postResponse",
+      message: newDoc,
     });
   } catch (error) {
+    console.log(error);
     res.status(400).send(`poste is not added correctly`);
   }
+});
+
+app.put("/post/done", async (req, res, next) => {
+  console.log(req.body.id);
+  await db
+    .collection("posts")
+    .doc(req.body.id)
+    .update({
+      status: "done",
+    })
+    .then((res) => console.log("requet succeded", res))
+    .catch((error) => console.log(" mybe the id is not correct", error));
+  res.status(201).send("success");
+});
+
+app.put("/post/deleted", async (req, res, next) => {
+  console.log(req.body);
+
+  await db
+    .collection("posts")
+    .doc(req.body.id)
+    .update({
+      status: "deleted",
+    })
+    .then((res) => console.log("requet succeded", res))
+    .catch((error) => console.log(" mybe the id is not correct", error));
+  res.status(400).send("failed");
 });
