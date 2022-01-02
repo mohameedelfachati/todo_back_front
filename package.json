@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@mui/material": "^5.2.6"
+    "@mui/material": "^5.2.6",
+    "dateformat": "^5.0.2"
   }
 }

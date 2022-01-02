@@ -32,14 +32,24 @@ app.get("/post", async (req, res, next) => {
 
   const postsList = [];
   snapshot.forEach((doc) => {
-    console.log();
+    /*  const currentDate =  */
+    /* var dateday = currentDate.getDate();
+    var month = currentDate.getMonth();
+    var year = currentDate.getFullYear();
+    var monthDateYear = month + 1 + "/" + dateday + "/" + year; */
+    console.log(doc.data().date);
+    let datetime = doc.data().date._seconds * 1000;
+    let date = new Date(datetime);
+    let StringDate = date.toLocaleDateString();
+    console.log(StringDate);
+
     postsList.push({
       id: doc.id,
       title: doc.data().title,
       priority: doc.data().priority,
       details: doc.data().details,
       status: doc.data().status,
-      date: doc.data().date,
+      date: StringDate,
     });
   });
 
